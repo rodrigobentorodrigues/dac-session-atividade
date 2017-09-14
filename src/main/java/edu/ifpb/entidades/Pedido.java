@@ -1,23 +1,22 @@
-package edu.ifpb.dac;
+package edu.ifpb.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-/**
- *
- * @author Ricardo Job
- */
 @Entity
 public class Pedido implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Produto> produtos;
 
     public Pedido() {
