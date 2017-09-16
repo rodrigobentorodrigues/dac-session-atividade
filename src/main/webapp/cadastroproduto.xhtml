@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Session Bean</title>
+    </h:head>
+    <h:body>
+        <h:link outcome="index.xhtml" value="Pagina Inicial" />
+        <h:link outcome="realizarpedido.xhtml" value="Realizar Pedido" />
+        <br></br>
+        <h:form>
+            <h:outputLabel value="Descricao" for="desc"/>
+            <h:inputText id="desc" value="#{controladorProduto.produto.descricao}" required="true"/>
+            <br></br>
+            <h:outputLabel value="Preco" for="preco"/>
+            <h:inputText id="preco" value="#{controladorProduto.produto.preco}" required="true"/>
+            <br></br>
+            <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
+        </h:form>
+        <br></br>
+        <h:dataTable var="prod" value="#{controladorProduto.produtos}">
+            <h:column>
+                <f:facet name="header"><b>Descricao</b></f:facet> 
+                <h:outputText value="#{prod.descricao}"/>
+            </h:column>
+            <h:outputText value="Preco"/>
+            <h:column>
+                <f:facet name="header"><b>Preco</b></f:facet> 
+                <h:outputText value="#{prod.preco}"/>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
