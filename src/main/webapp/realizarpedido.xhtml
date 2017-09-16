@@ -25,7 +25,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Adicionar ao Pedido</f:facet>
-                            <h:commandButton value="Adicionar" action="#{controladorPedido.addProduto(produto)}" immediate="true"/>
+                            <h:commandButton value="Adicionar"
+                                             action="#{controladorPedido.addProduto(produto)}"
+                                             immediate="true"/>
                         </h:column>
                     </h:dataTable>
                 </div>
@@ -42,10 +44,13 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Remover</f:facet>
+                            <h:commandButton value="Remover"
+                                             action="#{controladorPedido.removerProduto(prodPedido)}"
+                                             immediate="true"/>
                         </h:column>
                     </h:dataTable>
-                    <h:commandButton action="#{controladorPedido.confirmarPedido()}" value="Confirmar Pedido"/>
-                    <h:commandButton action="#{controladorPedido.cancelarPedido()}" value="Cancelar Pedido"/>
+                    <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.confirmarPedido()}" value="Confirmar Pedido"/>
+                    <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.cancelarPedido()}" value="Cancelar Pedido"/>
                 </div>
 
                 <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">

@@ -18,7 +18,7 @@ public class DaoImpl implements Dao{
     private EntityManager em;
     
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void add(Pedido p) {
         em.persist(p);
     }

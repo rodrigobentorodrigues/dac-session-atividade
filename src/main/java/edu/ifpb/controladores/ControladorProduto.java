@@ -18,6 +18,12 @@ public class ControladorProduto {
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<>();
     
+    public String adicionarProduto(){
+        servico.adicionar(produto);
+        produto = new Produto();
+        return null;
+    }
+    
     public Produto getProduto() {
         return produto;
     }
@@ -32,12 +38,6 @@ public class ControladorProduto {
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
-    }
-    
-    public String adicionarProduto(){
-        servico.adicionar(produto);
-        produto = new Produto();
-        return null;
     }
     
 }

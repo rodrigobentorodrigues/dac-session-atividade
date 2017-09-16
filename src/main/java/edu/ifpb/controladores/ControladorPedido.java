@@ -24,26 +24,28 @@ public class ControladorPedido implements Serializable {
     private List<Produto> vitrine = new ArrayList<>();
     private List<Produto> produtosPedido = new ArrayList<>();
     
-    public void salvar() {
-        Pedido p = new Pedido();
-        p.add(new Produto("Teste", BigDecimal.valueOf(999)));
-        dao.add(p);
-        System.out.println("Adicionado no BD");
-    }
-    
     public String addProduto(Produto p){
         produtosPedido.add(p);
         System.out.println(produtosPedido.toString());
         return null;
     }
     
+    public String removerProduto(Produto p){
+        produtosPedido.remove(p);
+        System.out.println(produtosPedido.toString());
+        return null;
+    }
+    
     public String confirmarPedido(){
-        // Implementar
+        Pedido pedido = new Pedido();
+        pedido.setProdutos(produtosPedido);
+        dao.add(pedido);
+        produtosPedido = new ArrayList<>();
         return null;
     }
     
     public String cancelarPedido(){
-        // Implementar
+        produtosPedido = new ArrayList<>();
         return null;
     }
     
