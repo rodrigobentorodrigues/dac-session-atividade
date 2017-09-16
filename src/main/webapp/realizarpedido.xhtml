@@ -9,9 +9,60 @@
     <h:body>
         <h:link outcome="cadastroproduto.xhtml" value="Cadastrar Produtos" />
         <h:link outcome="index.xhtml" value="Pagina Inicial" />
-        <br></br>
-<!--        <h:dataTable var="vitrine" value="#{controladorProduto.vitrine}">
-            
-        </h:dataTable>-->
+        <br></br><br></br>
+        <h:form>
+            <div style="height: auto; width: auto;">
+                <div style="height: 300px; width: 260px; float: left;">
+                    <!-- Lista contendo todos os produtos da "loja" -->
+                    <h:dataTable var="produto" value="#{controladorProduto.produtos}">
+                        <h:column>
+                            <f:facet name="header">Descrição</f:facet>
+                            <h:outputText value="#{produto.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Preço</f:facet>
+                            <h:outputText value="#{produto.preco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Adicionar ao Pedido</f:facet>
+                            <h:commandButton value="Adicionar" action="#{controladorPedido.addProduto(produto)}" immediate="true"/>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
+                    <!-- Lista contendo os produtos para o pedido -->
+                    <h:dataTable var="prodPedido" value="#{controladorPedido.produtosPedido}">
+                        <h:column>
+                            <f:facet name="header">Descrição</f:facet>
+                            <h:outputText value="#{prodPedido.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Preço</f:facet>
+                            <h:outputText value="#{prodPedido.preco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Remover</f:facet>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandButton action="#{controladorPedido.confirmarPedido()}" value="Confirmar Pedido"/>
+                    <h:commandButton action="#{controladorPedido.cancelarPedido()}" value="Cancelar Pedido"/>
+                </div>
+
+                <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
+                    <!-- Lista contendo todos os produtos da Vitrine --> 
+                    <h:outputText value="Vitrine (Produtos em Destaque)"/>
+                    <h:dataTable var="vitrine" value="#{controladorPedido.vitrine}">
+                        <h:column>
+                            <f:facet name="header">Descrição</f:facet>
+                            <h:outputText value="#{vitrine.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Preço</f:facet>
+                            <h:outputText value="#{vitrine.preco}"/>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </h:form>
     </h:body>
 </html>

@@ -17,7 +17,6 @@ public class ControladorProduto {
     private Servico servico;
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<>();
-    private List<Produto> vitrine = new ArrayList<>();
     
     public Produto getProduto() {
         return produto;
@@ -34,18 +33,9 @@ public class ControladorProduto {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-
-    public List<Produto> getVitrine() {
-        return servico.listarVitrine();
-    }
-
-    public void setVitrine(List<Produto> vitrine) {
-        this.vitrine = vitrine;
-    }
     
     public String adicionarProduto(){
         servico.adicionar(produto);
-        System.out.println(produto.toString());
         produto = new Produto();
         return null;
     }
