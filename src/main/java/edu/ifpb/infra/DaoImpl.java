@@ -2,6 +2,7 @@
 package edu.ifpb.infra;
 
 import edu.ifpb.entidades.Pedido;
+import edu.ifpb.entidades.Produto;
 import edu.ifpb.interfaces.Dao;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -19,7 +20,13 @@ public class DaoImpl implements Dao{
     
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void add(Pedido p) {
+    public void addPedido(Pedido p) {
+        em.persist(p);
+    }
+    
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void addProduto(Produto p) {
         em.persist(p);
     }
     

@@ -19,7 +19,7 @@
             <br></br>
             <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
         </h:form>
-        <h:dataTable var="p" value="#{controladorProduto.produtos}">
+        <h:dataTable rendered="#{not empty controladorProduto.produtos}" var="p" value="#{controladorProduto.produtos}">
             <h:column>
                 <f:facet name="header">Descrição</f:facet>
                 <h:outputText value="#{p.descricao}"/>

@@ -13,8 +13,9 @@
         <h:form>
             <div style="height: auto; width: auto;">
                 <div style="height: 300px; width: 260px; float: left;">
+                    
                     <!-- Lista contendo todos os produtos da "loja" -->
-                    <h:dataTable var="produto" value="#{controladorProduto.produtos}">
+                    <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}" var="produto" value="#{controladorPedido.todosProdutos}">
                         <h:column>
                             <f:facet name="header">Descrição</f:facet>
                             <h:outputText value="#{produto.descricao}"/>
@@ -33,7 +34,7 @@
                 </div>
                 <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
                     <!-- Lista contendo os produtos para o pedido -->
-                    <h:dataTable var="prodPedido" value="#{controladorPedido.produtosPedido}">
+                    <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}" var="prodPedido" value="#{controladorPedido.produtosPedido}">
                         <h:column>
                             <f:facet name="header">Descrição</f:facet>
                             <h:outputText value="#{prodPedido.descricao}"/>
@@ -55,8 +56,8 @@
 
                 <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
                     <!-- Lista contendo todos os produtos da Vitrine --> 
+                    <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}" var="vitrine" value="#{controladorPedido.vitrine}">
                     <h:outputText value="Vitrine (Produtos em Destaque)"/>
-                    <h:dataTable var="vitrine" value="#{controladorPedido.vitrine}">
                         <h:column>
                             <f:facet name="header">Descrição</f:facet>
                             <h:outputText value="#{vitrine.descricao}"/>

@@ -5,7 +5,6 @@ import edu.ifpb.entidades.Produto;
 import edu.ifpb.interfaces.Dao;
 import edu.ifpb.interfaces.Servico;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,46 +14,56 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class ControladorPedido implements Serializable {
-    
+
     @EJB
     private Dao dao;
     @EJB
     private Servico servico;
-    private List<Produto> produtos = new ArrayList<>();
+    private List<Produto> todosProdutos = new ArrayList<>();
+    private List<Produto> auxiliar = new ArrayList<>();
     private List<Produto> vitrine = new ArrayList<>();
     private List<Produto> produtosPedido = new ArrayList<>();
-    
-    public String addProduto(Produto p){
+
+    public String addProduto(Produto p) {
         produtosPedido.add(p);
-        System.out.println(produtosPedido.toString());
+        boolean cond = false;
+        for(Produto aux: auxiliar){
+            if(aux.equals(p)){
+                cond = true;
+            }
+        }
+        if(!cond){
+            auxiliar.add(p);
+        }
         return null;
     }
-    
-    public String removerProduto(Produto p){
+
+    public String removerProduto(Produto p) {
         produtosPedido.remove(p);
-        System.out.println(produtosPedido.toString());
+        auxiliar.remove(p);
         return null;
     }
-    
-    public String confirmarPedido(){
+
+    public String confirmarPedido() {
         Pedido pedido = new Pedido();
-        pedido.setProdutos(produtosPedido);
-        dao.add(pedido);
+        pedido.setProdutos(auxiliar);
+        dao.addPedido(pedido);
+        produtosPedido = new ArrayList<>();
+        auxiliar = new ArrayList<>();
+        return null;
+    }
+
+    public String cancelarPedido() {
         produtosPedido = new ArrayList<>();
         return null;
     }
-    
-    public String cancelarPedido(){
-        produtosPedido = new ArrayList<>();
-        return null;
-    }
-    
-    public List<Produto> getProdutos() {
+
+    public List<Produto> getTodosProdutos() {
         return servico.listarTodos();
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setTodosProdutos(List<Produto> todosProdutos) {
+        this.todosProdutos = todosProdutos;
     }
 
     public List<Produto> getVitrine() {
@@ -71,6 +80,6 @@ public class ControladorPedido implements Serializable {
 
     public void setProdutosPedido(List<Produto> produtosPedido) {
         this.produtosPedido = produtosPedido;
-    }    
+    }
 
 }
