@@ -25,31 +25,31 @@ public class ControladorPedido implements Serializable {
     private List<Produto> produtosPedido = new ArrayList<>();
 
     public String addProduto(Produto p) {
-        produtosPedido.add(p);
+//        produtosPedido.add(p);
         boolean cond = false;
-        for(Produto aux: auxiliar){
+        for(Produto aux: produtosPedido){
             if(aux.equals(p)){
                 cond = true;
             }
         }
         if(!cond){
-            auxiliar.add(p);
+            produtosPedido.add(p);
         }
         return null;
     }
 
     public String removerProduto(Produto p) {
         produtosPedido.remove(p);
-        auxiliar.remove(p);
+//        auxiliar.remove(p);
         return null;
     }
 
     public String confirmarPedido() {
         Pedido pedido = new Pedido();
-        pedido.setProdutos(auxiliar);
+        pedido.setProdutos(produtosPedido);
         dao.addPedido(pedido);
         produtosPedido = new ArrayList<>();
-        auxiliar = new ArrayList<>();
+//        auxiliar = new ArrayList<>();
         return null;
     }
 
