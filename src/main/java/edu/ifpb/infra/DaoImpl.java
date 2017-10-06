@@ -6,8 +6,6 @@ import edu.ifpb.entidades.Produto;
 import edu.ifpb.interfaces.Dao;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -19,13 +17,11 @@ public class DaoImpl implements Dao{
     private EntityManager em;
     
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void addPedido(Pedido p) {
         em.persist(p);
     }
     
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void addProduto(Produto p) {
         em.persist(p);
     }
