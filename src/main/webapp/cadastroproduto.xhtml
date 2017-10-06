@@ -12,10 +12,16 @@
         <br></br>
         <h:form>
             <h:outputLabel value="Descricao" for="desc"/>
-            <h:inputText id="desc" value="#{controladorProduto.produto.descricao}" required="true"/>
+            <h:inputText id="desc" 
+                         value="#{controladorProduto.produto.descricao}" 
+                         required="true"
+                         requiredMessage="Necessario informar o nome do produto..."/>
             <br></br>
             <h:outputLabel value="Preco" for="preco"/>
-            <h:inputText id="preco" value="#{controladorProduto.produto.preco}" required="true"/>
+            <h:inputText id="preco" 
+                         value="#{controladorProduto.produto.preco}"
+                         required="true"
+                         requiredMessage="Necessario informar o preco do produto..."/>
             <br></br>
             <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
         </h:form>

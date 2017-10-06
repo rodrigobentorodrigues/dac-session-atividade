@@ -25,7 +25,6 @@ public class ControladorPedido implements Serializable {
     private List<Produto> produtosPedido = new ArrayList<>();
 
     public String addProduto(Produto p) {
-//        produtosPedido.add(p);
         boolean cond = false;
         for(Produto aux: produtosPedido){
             if(aux.equals(p)){
@@ -40,7 +39,6 @@ public class ControladorPedido implements Serializable {
 
     public String removerProduto(Produto p) {
         produtosPedido.remove(p);
-//        auxiliar.remove(p);
         return null;
     }
 
@@ -49,7 +47,6 @@ public class ControladorPedido implements Serializable {
         pedido.setProdutos(produtosPedido);
         dao.addPedido(pedido);
         produtosPedido = new ArrayList<>();
-//        auxiliar = new ArrayList<>();
         return null;
     }
 
