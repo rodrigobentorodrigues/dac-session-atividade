@@ -1,3 +1,4 @@
+mvn clean install
 cd Postgres
 sh run.sh
 cd ../
