@@ -2,14 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Session Bean</title>
-    </h:head>
-    <h:body>
-        <h:link outcome="cadastroproduto.xhtml" value="Cadastrar Produtos" />
-        <h:link outcome="realizarpedido.xhtml" value="Realizar Pedido" />
-        <br></br>
-    </h:body>
-</html>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    <ui:composition template="/template.xhtml">
+        <ui:define name="center">
+            <h1>Home</h1>
+            Cadastre pedidos e realize pedidos!
+            <br></br>
+        </ui:define>
+    </ui:composition>
 
+</html>
