@@ -7,4 +7,8 @@ and open the template in the editor.
     Created on : 12/10/2017, 18:38:55
     Author     : natan
 */
-
+.lista_pedidos {
+    width: 100px;
+    border: 2px solid red;
+    background-color: red;
+}

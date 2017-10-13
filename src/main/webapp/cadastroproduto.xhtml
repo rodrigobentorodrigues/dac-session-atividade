@@ -8,9 +8,6 @@
     
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
-            
-            <h:link outcome="index.xhtml" value="Pagina Inicial" />
-            <h:link outcome="realizarpedido.xhtml" value="Realizar Pedido" />
             <br></br>
             <h:form>
                 <h:outputLabel value="Descricao" for="desc"/>
@@ -18,7 +15,7 @@
                              value="#{controladorProduto.produto.descricao}" 
                              required="true"
                              requiredMessage="Necessario informar o nome do produto..."/>
-                <br></br>
+                <br></br> 
                 <h:outputLabel value="Preco" for="preco"/>
                 <h:inputText id="preco" 
                              value="#{controladorProduto.produto.preco}"
@@ -27,33 +24,11 @@
                 <br></br>
                 <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
             </h:form>
+            
+            <h3>Lista de Pedidos</h3>
             <h:dataTable rendered="#{not empty controladorProduto.produtos}" var="p" value="#{controladorProduto.produtos}">
+                
                 <h:column>
-            <h:form>
-                <h:outputLabel value="Descricao" for="desc"/>
-                <h:inputText id="desc" 
-                             value="#{controladorProduto.produto.descricao}" 
-                             required="true"
-                             requiredMessage="Necessario informar o nome do produto..."/>
-                <br></br>
-                <h:outputLabel value="Preco" for="preco"/>
-                <h:inputText id="preco" 
-                             value="#{controladorProduto.produto.preco}"
-                             required="true"
-                             requiredMessage="Necessario informar o preco do produto..."/>
-                <br></br>
-                <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
-            </h:form>
-            <h:dataTable rendered="#{not empty controladorProduto.produtos}" var="p" value="#{controladorProduto.produtos}">
-                <h:column>
-                    <f:facet name="header">Descrição</f:facet>
-                    <h:outputText value="#{p.descricao}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Preço</f:facet>
-                    <h:outputText value="#{p.preco}"/>
-                </h:column>
-            </h:dataTable>
                     <f:facet name="header">Descrição</f:facet>
                     <h:outputText value="#{p.descricao}"/>
                 </h:column>
