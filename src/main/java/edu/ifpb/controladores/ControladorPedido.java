@@ -23,6 +23,7 @@ public class ControladorPedido implements Serializable {
     private List<Produto> auxiliar = new ArrayList<>();
     private List<Produto> vitrine = new ArrayList<>();
     private List<Produto> produtosPedido = new ArrayList<>();
+    private boolean pedidoFinalizado = false;
 
     public String addProduto(Produto p) {
         boolean cond = false;
@@ -34,6 +35,7 @@ public class ControladorPedido implements Serializable {
         if(!cond){
             produtosPedido.add(p);
         }
+        if(pedidoFinalizado) pedidoFinalizado = false;
         return null;
     }
 
@@ -47,6 +49,7 @@ public class ControladorPedido implements Serializable {
         pedido.setProdutos(produtosPedido);
         dao.addPedido(pedido);
         produtosPedido = new ArrayList<>();
+        pedidoFinalizado = true;
         return null;
     }
 
@@ -78,5 +81,15 @@ public class ControladorPedido implements Serializable {
     public void setProdutosPedido(List<Produto> produtosPedido) {
         this.produtosPedido = produtosPedido;
     }
+
+    public boolean isPedidoFinalizado() {
+        return pedidoFinalizado;
+    }
+
+    public void setPedidoFinalizado(boolean pedidoFinalizado) {
+        this.pedidoFinalizado = pedidoFinalizado;
+    }
+    
+    
 
 }
