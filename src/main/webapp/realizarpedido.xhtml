@@ -9,76 +9,122 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
             
-            <h:link outcome="cadastroproduto.xhtml" value="Cadastrar Produtos" />
-            <h:link outcome="index.xhtml" value="Pagina Inicial" />
             <br></br><br></br>
-            <h:form>
-                <div style="height: auto; width: auto;">
-                    <div style="height: 300px; width: 260px; float: left;">
-                        <h:outputText value="Não possui nenhum produto cadastrado no sistema"
-                                      rendered="#{empty controladorProduto.produtos}"/>
-
-                        <!-- Lista contendo todos os produtos da "loja" -->
-                        <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}"
-                                     var="produto"
-                                     value="#{controladorPedido.todosProdutos}">
-                            <h:column>
-                                <f:facet name="header">Descrição</f:facet>
-                                <h:outputText value="#{produto.descricao}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Preço</f:facet>
-                                <h:outputText value="#{produto.preco}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Adicionar ao Pedido</f:facet>
-                                <h:commandButton value="Adicionar"
-                                                 action="#{controladorPedido.addProduto(produto)}"
-                                                 immediate="true"/>
-                            </h:column>
-                        </h:dataTable>
+                <div class="">
+                    <div class="row center-align">
+                        <h4>
+                            <h:outputText style="color: red" value="Pedido finalizado" rendered="#{controladorPedido.pedidoFinalizado}" />
+                        </h4>
                     </div>
-                    <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
-                        <h:outputText value="Todos os produtos" rendered="#{not empty controladorPedido.todosProdutos}"/>
-                        <!-- Lista contendo os produtos para o pedido -->
-                        <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}"
-                                     var="prodPedido"
-                                     value="#{controladorPedido.produtosPedido}">
-                            <h:column>
-                                <f:facet name="header">Descrição</f:facet>
-                                <h:outputText value="#{prodPedido.descricao}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Preço</f:facet>
-                                <h:outputText value="#{prodPedido.preco}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Remover</f:facet>
-                                <h:commandButton value="Remover"
-                                                 action="#{controladorPedido.removerProduto(prodPedido)}"
-                                                 immediate="true"/>
-                            </h:column>
-                        </h:dataTable>
-                        <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.confirmarPedido()}" value="Confirmar Pedido"/>
-                        <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.cancelarPedido()}" value="Cancelar Pedido"/>
-                    </div>
+                    <div class="row"> 
+                        <!-- Todos os produtos -->
+                        <div class="col m6">
+                            <h:form>
+                                <h5>
+                                    <h:outputText value="Todos os produtos"
+                                                  rendered="#{not empty controladorProduto.produtos}"/>
+                                </h5>
+                                <h:outputText value="Não possui nenhum produto cadastrado no sistema"
+                                              rendered="#{empty controladorProduto.produtos}"/>
 
-                    <div style="height: 300px; width: 250px; float: left; margin-left: 110px;">
-                        <h:outputText value="Vitrine (Produtos em Destaque)" rendered="#{not empty controladorPedido.todosProdutos}"/>
-                        <!-- Lista contendo todos os produtos da Vitrine --> 
-                        <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}" var="vitrine" value="#{controladorPedido.vitrine}">
-                            <h:column>
-                                <f:facet name="header">Descrição</f:facet>
-                                <h:outputText value="#{vitrine.descricao}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Preço</f:facet>
-                                <h:outputText value="#{vitrine.preco}"/>
-                            </h:column>
-                        </h:dataTable>
+                                <!-- Lista contendo todos os produtos da "loja" -->
+                                <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}"
+                                             var="produto"
+                                             value="#{controladorPedido.todosProdutos}">
+                                    <h:column>
+                                        <f:facet name="header">Descrição</f:facet>
+                                        <h:outputText value="#{produto.descricao}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Preço</f:facet>
+                                        <h:outputText value="#{produto.preco}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Adicionar ao Pedido</f:facet>
+                                        <div class="left-align">
+                                            <h:commandButton value="Adicionar"
+                                                             class="waves-effect waves-light btn cyan darken-1"
+                                                             action="#{controladorPedido.addProduto(produto)}"
+                                                             immediate="true"/>
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    
+                        <!-- Pedidos -->
+                        <div class="col m6">
+                            <h:form  rendered="#{not empty controladorPedido.todosProdutos}">
+                                <h5>
+                                    <h:outputText value="Pedidos" rendered="#{not empty controladorPedido.todosProdutos}"/>
+                                </h5>
+                                <!-- Lista contendo os produtos para o pedido -->
+                                <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}"
+                                             var="prodPedido"
+                                             value="#{controladorPedido.produtosPedido}">
+                                    <h:column>
+                                        <f:facet name="header">Descrição</f:facet>
+                                        <h:outputText value="#{prodPedido.descricao}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Preço</f:facet>
+                                        <h:outputText value="#{prodPedido.preco}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Remover</f:facet>
+                                        <h:commandButton value="Remover"
+                                                         class="waves-effect waves-light btn red lighten-1"
+                                                         action="#{controladorPedido.removerProduto(prodPedido)}"
+                                                         immediate="true"/>
+                                    </h:column>
+                                </h:dataTable>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.confirmarPedido()}" 
+                                                         class="waves-effect waves-light btn light-green modal-trigger"
+                                                         value="Confirmar Pedido"/>
+                                    </div> 
+                                    <div class="col m6"> 
+                                        <h:commandButton rendered="#{not empty controladorPedido.produtosPedido}" action="#{controladorPedido.cancelarPedido()}" 
+                                                         class="waves-effect waves-light btn yellow darken-1" value="Cancelar Pedido"/> 
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                            </h:form>
+                        </div>
+                    
+                        <!-- Vitrine -->
+<!--                        <div class="col m4">
+                            <h:form>
+                                <h:outputText value="Vitrine (Produtos em Destaque)" rendered="#{not empty controladorPedido.todosProdutos}"/>
+                                 Lista contendo todos os produtos da Vitrine  
+                                <h:dataTable rendered="#{not empty controladorPedido.todosProdutos}" var="vitrine" value="#{controladorPedido.vitrine}">
+                                    <h:column>
+                                        <f:facet name="header">Descrição</f:facet>
+                                        <h:outputText value="#{vitrine.descricao}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Preço</f:facet>
+                                        <h:outputText value="#{vitrine.preco}"/>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>-->
                     </div>
                 </div>
-            </h:form>
+                    
+                    <!--<div style="height: auto; width: auto;">-->
+                    
+                    
+                    
+
+                    
+                
+                    
+                    <!--</div>-->
+            
             
         </ui:define>
     </ui:composition>

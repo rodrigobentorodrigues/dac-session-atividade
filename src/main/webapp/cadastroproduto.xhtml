@@ -9,34 +9,46 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="center">
             <br></br>
-            <h:form>
-                <h:outputLabel value="Descricao" for="desc"/>
-                <h:inputText id="desc" 
-                             value="#{controladorProduto.produto.descricao}" 
-                             required="true"
-                             requiredMessage="Necessario informar o nome do produto..."/>
-                <br></br> 
-                <h:outputLabel value="Preco" for="preco"/>
-                <h:inputText id="preco" 
-                             value="#{controladorProduto.produto.preco}"
-                             required="true"
-                             requiredMessage="Necessario informar o preco do produto..."/>
-                <br></br>
-                <h:commandButton action="#{controladorProduto.adicionarProduto()}" value="Salvar Produto"/>
-            </h:form>
+            <div class="row cad-prod">
+                <h:form>
+                    <h:outputLabel value="Descricao" for="desc"/>
+                    <h:inputText id="desc" 
+                                 value="#{controladorProduto.produto.descricao}" 
+                                 required="true"
+                                 requiredMessage="Necessario informar o nome do produto..."/>
+                    <br></br> 
+                    <h:outputLabel value="Preço" for="preco"/>
+                    <h:inputText id="preco" 
+                                 value="#{controladorProduto.produto.preco}"
+                                 required="true"
+                                 requiredMessage="Necessario informar o preco do produto..."/>
+                    <br></br>
+                    <div class="row right-align">
+                        <h:commandButton 
+                            action="#{controladorProduto.adicionarProduto()}" 
+                            class="waves-effect waves-light btn cyan darken-1"
+                            value="Salvar Produto"/>
+                    </div>
+                </h:form>
+            </div>
             
-            <h3>Lista de Pedidos</h3>
-            <h:dataTable rendered="#{not empty controladorProduto.produtos}" var="p" value="#{controladorProduto.produtos}">
-                
-                <h:column>
-                    <f:facet name="header">Descrição</f:facet>
-                    <h:outputText value="#{p.descricao}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Preço</f:facet>
-                    <h:outputText value="#{p.preco}"/>
-                </h:column>
-            </h:dataTable>
+            <div class="row">
+                <h3>
+                    <h:outputText value="Lista de Produtos" rendered="#{not empty controladorProduto.produtos}"/>
+                </h3>
+                <h:dataTable rendered="#{not empty controladorProduto.produtos}" var="p" value="#{controladorProduto.produtos}">
+
+                    <h:column>
+                        <f:facet name="header">Descrição</f:facet>
+                        <h:outputText value="#{p.descricao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Preço</f:facet>
+                        <h:outputText value="#{p.preco}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+            
             
            
         </ui:define>
