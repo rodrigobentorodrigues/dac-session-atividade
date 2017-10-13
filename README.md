@@ -1,4 +1,4 @@
-# Sistema da Compras
+# Sistema de Compras
 Atividade avaliativa da cadeira de DAC sobre Session Beans
 
 Alunos: Rodrigo Bento
